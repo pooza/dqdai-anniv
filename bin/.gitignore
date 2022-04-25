@@ -1,0 +1,3 @@
+*.rb
+!dqdai-anniv.rb
+!test.rb

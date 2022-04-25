@@ -1,0 +1,19 @@
+package:
+  authors:
+    - Tatsuya Koishi
+  description: tomato-shriekerから、EPGStationの録画情報を扱えるようにするユーティリティ。
+  email:
+    - tkoishi@b-shock.co.jp
+  license: MIT
+  url: https://github.com/pooza/dqdai-anniv
+  version: 1.0.0
+tools:
+  - recording
+  - reserves
+  - help
+epg_station:
+  url: http://localhost:8888
+http:
+  retry:
+    limit: 3
+    seconds: 1
