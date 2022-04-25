@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '~>3.1.0'
 gem 'ginseng-core', github: 'pooza/ginseng-core', require: 'ginseng'
+gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse', require: 'ginseng/fediverse'
 
 group :development do
   gem 'ricecream'

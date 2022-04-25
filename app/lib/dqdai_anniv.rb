@@ -13,7 +13,7 @@ module DqdaiAnniv
     loader = Zeitwerk::Loader.new
     loader.inflector.inflect(config['inflections'])
     loader.push_dir(File.join(dir, 'app/lib'))
-    loader.collapse('app/lib/dqdai-anniv/*')
+    loader.collapse('app/lib/dqdai_anniv/*')
     return loader
   end
 

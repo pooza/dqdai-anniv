@@ -1,7 +1,7 @@
 package:
   authors:
     - Tatsuya Koishi
-  description: tomato-shriekerから、EPGStationの録画情報を扱えるようにするユーティリティ。
+  description: 「ドラゴンクエストダイの大冒険」に関する、各種記念日をtomato-shriekerから扱えるようにするユーティリティ。
   email:
     - tkoishi@b-shock.co.jp
   license: MIT
@@ -11,8 +11,11 @@ tools:
   - recording
   - reserves
   - help
-epg_station:
-  url: http://localhost:8888
+calendar:
+  - name: character
+    url: https://mstdn.delmulin.com/api/character/v1/detail.json
+  - name: anniversary
+    url: https://mstdn.delmulin.com/api/anniversary/v1/common.json
 http:
   retry:
     limit: 3
