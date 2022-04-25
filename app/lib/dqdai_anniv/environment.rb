@@ -5,7 +5,7 @@ module DqdaiAnniv
     end
 
     def self.dir
-      return dqdai-anniv.dir
+      return DqdaiAnniv.dir
     end
   end
 end

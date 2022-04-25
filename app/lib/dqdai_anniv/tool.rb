@@ -53,7 +53,7 @@ module DqdaiAnniv
     end
 
     def self.create(name)
-      return "dqdai-anniv::#{name.camelize}Tool".constantize.new
+      return "DqdaiAnniv::#{name.camelize}Tool".constantize.new
     end
 
     def self.all
