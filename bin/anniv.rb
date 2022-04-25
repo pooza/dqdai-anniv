@@ -12,7 +12,6 @@ module DqdaiAnniv
     end
   end
   puts entries[date].join("\n=====\n")
-
 rescue => e
   warn e.message
   exit 1
