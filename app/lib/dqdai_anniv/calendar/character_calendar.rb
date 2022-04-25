@@ -1,14 +1,14 @@
 module DqdaiAnniv
   class CharacterCalendar < Calendar
-    def entries
-      entries = {}
-      response.map {|v| Character.new(v)}.select(&:events?).map(&:events).each do |events|
-        events.each do |k, v|
-          entries[k] ||= []
-          entries[k] = entries[k].concat(v)
+    def events
+      events = {}
+      response.map {|v| Character.new(v)}.select(&:events?).map(&:events).each do |entries|
+        entries.each do |k, v|
+          events[k] ||= []
+          events[k] = events[k].concat(v)
         end
       end
-      return entries
+      return events
     end
   end
 end

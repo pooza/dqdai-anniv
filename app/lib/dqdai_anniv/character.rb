@@ -66,9 +66,13 @@ module DqdaiAnniv
     end
 
     def create_tags(event)
-      tags = [name, event[:name]]
+      tags = Ginseng::Fediverse::TagContainer.new
+      tags.push(name)
+      tags.push(event[:name])
       if event[:type] == '誕生日'
-        tags.concat(['生誕祭', "#{event[:name]}生誕祭", "#{event[:name]}生誕祭#{Date.today.year}"])
+        tags.push('生誕祭')
+        tags.push("#{event[:name]}生誕祭")
+        tags.push("#{event[:name]}生誕祭#{Date.today.year}")
       end
       return tags
     end

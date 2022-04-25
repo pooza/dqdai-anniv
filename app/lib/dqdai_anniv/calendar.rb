@@ -22,14 +22,12 @@ module DqdaiAnniv
       return @response
     end
 
-    alias fetch response
-
-    def entries
+    def events
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
 
     def messages
-      return entries.to_h {|k, events| [k, events.map {|v| create_message(k, v)}]}
+      return events.to_h {|k, events| [k, events.map {|v| create_message(k, v)}]}
     end
 
     def create_message(key, event)

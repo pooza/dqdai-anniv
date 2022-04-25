@@ -3,15 +3,15 @@ $LOAD_PATH.unshift(File.join(File.expand_path('..', __dir__), 'app/lib'))
 
 require 'dqdai_anniv'
 module DqdaiAnniv
-  date = ARGV.shift || Date.today.strftime('%m%d')
-  entries = {}
+  messages = {}
   Calendar.all.each do |calendar|
-    calendar.messages.each do |k, messages|
-      entries[k] ||= []
-      entries[k].concat(messages)
+    calendar.messages.each do |k, v|
+      messages[k] ||= []
+      messages[k].concat(v)
     end
   end
-  puts entries[date].join("\n=====\n")
+  date = ARGV.shift || Date.today.strftime('%m%d')
+  puts messages[date].join("\n=====\n")
 rescue => e
   warn e.message
   exit 1

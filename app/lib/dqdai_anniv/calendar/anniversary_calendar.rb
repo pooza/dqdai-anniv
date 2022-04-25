@@ -1,18 +1,24 @@
 module DqdaiAnniv
   class AnniversaryCalendar < Calendar
-    def entries
-      entries = {}
-      fetch.each do |entry|
-        key = Date.parse("2000/#{entry['date']}").strftime('%m%d')
-        tags = entry['tags'] || []
-        if tag = tags.find {|v| v.end_with?('生誕祭')}
-          tags.push('生誕祭')
-          tags.push("#{tag}#{Date.today.year}")
-        end
-        entries[key] ||= []
-        entries[key].push(message: entry['title'], tags: tags.uniq)
+    def events
+      events = {}
+      response.each do |event|
+        key = Date.parse("2000/#{event['date']}").strftime('%m%d')
+        events[key] ||= []
+        events[key].push(message: event['title'], tags: create_tags(event))
       end
-      return entries
+      return events
+    end
+
+    private
+
+    def create_tags(event)
+      tags = Ginseng::Fediverse::TagContainer.new(event['tags'] || [])
+      if tag = tags.find {|t| t.end_with?('生誕祭')}
+        tags.push('生誕祭')
+        tags.push("#{tag}#{Date.today.year}")
+      end
+      return tags
     end
   end
 end
