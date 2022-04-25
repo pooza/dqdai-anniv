@@ -35,9 +35,7 @@ module DqdaiAnniv
     def create_message(key, event)
       date = Date.parse("#{Date.today.year}#{key}")
       lines = ["#{date.month}月#{date.day}日は、#{event[:message]}。"]
-      if event[:tags].present?
-        lines.push(event[:tags].map(&:to_hashtag).join(' '))
-      end
+      lines.push(event[:tags].map(&:to_hashtag).join(' ')) if event[:tags].present?
       return lines.join("\n")
     end
 
