@@ -11,7 +11,7 @@ module DqdaiAnniv
     end
   end
   date = ARGV.shift || Date.today.strftime('%m%d')
-  puts messages[date].join("\n=====\n")
+  puts messages[date]&.join("\n=====\n")
 rescue => e
   warn e.message
   exit 1

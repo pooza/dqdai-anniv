@@ -17,6 +17,8 @@ module DqdaiAnniv
       if tag = tags.find {|t| t.end_with?('生誕祭')}
         tags.push('生誕祭')
         tags.push("#{tag}#{Date.today.year}")
+      elsif tag = tags.find {|t| t.match?(/(祭|まつり)/)}
+        tags.push("#{tag}#{Date.today.year}")
       end
       return tags
     end
