@@ -30,13 +30,6 @@ module DqdaiAnniv
       return events.to_h {|k, events| [k, events.map {|v| create_message(k, v)}]}
     end
 
-    def create_message(key, event)
-      date = Date.parse("#{Date.today.year}#{key}")
-      lines = ["#{date.month}月#{date.day}日は、#{event[:message]}。"]
-      lines.push(event[:tags].map(&:to_hashtag).join(' ')) if event[:tags].present?
-      return lines.join("\n")
-    end
-
     def self.all
       return enum_for(__method__) unless block_given?
       config['/calendar'].each do |name|
@@ -46,6 +39,15 @@ module DqdaiAnniv
 
     def self.create(name)
       return "DqdaiAnniv::#{name.camelize}Calendar".constantize.new
+    end
+
+    private
+
+    def create_message(key, event)
+      date = Date.parse("#{Date.today.year}#{key}")
+      lines = ["#{date.month}月#{date.day}日は、#{event[:message]}。"]
+      lines.push(event[:tags].map(&:to_hashtag).join(' ')) if event[:tags].present?
+      return lines.join("\n")
     end
   end
 end

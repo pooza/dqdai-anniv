@@ -10,8 +10,6 @@ module DqdaiAnniv
       return events
     end
 
-    private
-
     def create_tags(event)
       tags = Ginseng::Fediverse::TagContainer.new(event['tags'] || [])
       if tag = tags.find {|t| t.end_with?('生誕祭')}
