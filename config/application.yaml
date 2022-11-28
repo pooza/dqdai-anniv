@@ -6,7 +6,7 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
   url: https://github.com/pooza/dqdai-anniv
-  version: 1.0.1
+  version: 1.0.2
 calendar:
   - name: character
     url: https://mstdn.delmulin.com/api/character/v1/detail.json
