@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~>3.1.0'
+ruby '~>3.2.0'
 gem 'ginseng-core', github: 'pooza/ginseng-core', require: 'ginseng'
 gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse', require: 'ginseng/fediverse'
 
