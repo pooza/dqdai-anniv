@@ -175,7 +175,7 @@ GEM
     set (1.0.3)
     test-unit (3.5.7)
       power_assert
-    time (0.2.1)
+    time (0.2.2)
       date
     timecop (0.9.6)
     timeout (0.3.2)
