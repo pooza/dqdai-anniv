@@ -1,9 +1,7 @@
 module DqdaiAnniv
-  class Character
-    include Package
-
+  class Character < Model
     def initialize(params)
-      @params = params
+      super
       @events = {}
     end
 
@@ -30,35 +28,11 @@ module DqdaiAnniv
       return events.present?
     end
 
-    def new_cv
-      return @params['new_cv']
-    end
-
-    def new_cv_birthday
-      return @params['new_cv_birthday']
-    end
-
-    def new_cv_deathday
-      return @params['new_cv_deathday']
-    end
-
-    def old_cv
-      return @params['old_cv']
-    end
-
-    def old_cv_birthday
-      return @params['old_cv_birthday']
-    end
-
-    def old_cv_deathday
-      return @params['old_cv_deathday']
-    end
-
     private
 
     def push(date, event)
       key = Date.parse("2000/#{date}").strftime('%m%d')
-      event[:name].gsub!(/[[:blank:]]/, '')
+      event[:name] = event[:name].gsub(/[[:blank:]]/, '')
       event[:message] = create_message(event)
       event[:tags] = create_tags(event)
       @events[key] ||= []

@@ -1,11 +1,11 @@
 module DqdaiAnniv
-  class AnniversaryCalendarTest < TestCase
+  class NumberingTitleCalendarTest < TestCase
     def setup
-      @calendar = Calendar.create('anniversary')
+      @calendar = Calendar.create('numbering_title')
     end
 
     def test_name
-      assert_equal('anniversary', @calendar.name)
+      assert_equal('numbering_title', @calendar.name)
     end
 
     def test_uri
@@ -21,18 +21,6 @@ module DqdaiAnniv
         events.each do |event|
           assert_kind_of(String, event[:message])
           assert_kind_of(Ginseng::Fediverse::TagContainer, event[:tags])
-        end
-      end
-    end
-
-    def test_messages
-      assert_kind_of(Hash, @calendar.messages)
-      @calendar.messages.each do |date, messages|
-        assert_kind_of(String, date)
-        assert_kind_of(Date, Date.parse("2000#{date}"))
-        assert_kind_of(Array, messages)
-        messages.each do |message|
-          assert_kind_of(String, message)
         end
       end
     end
