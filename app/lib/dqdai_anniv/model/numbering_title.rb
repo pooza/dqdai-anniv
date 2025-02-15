@@ -1,11 +1,11 @@
 module DqdaiAnniv
   class NumberingTitle < Model
     def message
-      return "「#{name}」の発売日から#{anniversary}周年"
+      return "「#{title}」の発売日から#{anniversary}周年"
     end
 
     def date
-      return Date.parse(@params['date'])
+      return Time.parse(@params['date']).getlocal.to_date
     end
 
     def anniversary
