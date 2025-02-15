@@ -1,9 +1,7 @@
 module DqdaiAnniv
-  class Character
-    include Package
-
+  class Character < Model
     def initialize(params)
-      @params = params
+      super
       @events = {}
     end
 
@@ -28,30 +26,6 @@ module DqdaiAnniv
 
     def events?
       return events.present?
-    end
-
-    def new_cv
-      return @params['new_cv']
-    end
-
-    def new_cv_birthday
-      return @params['new_cv_birthday']
-    end
-
-    def new_cv_deathday
-      return @params['new_cv_deathday']
-    end
-
-    def old_cv
-      return @params['old_cv']
-    end
-
-    def old_cv_birthday
-      return @params['old_cv_birthday']
-    end
-
-    def old_cv_deathday
-      return @params['old_cv_deathday']
     end
 
     private

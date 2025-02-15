@@ -1,17 +1,5 @@
 module DqdaiAnniv
-  class NumberingTitle
-    include Package
-
-    def initialize(params)
-      @params = params
-    end
-
-    def title
-      return @params['title']
-    end
-
-    alias name title
-
+  class NumberingTitle < Model
     def message
       return "「#{name}」の発売日から#{anniversary}周年"
     end
