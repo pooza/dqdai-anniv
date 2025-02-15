@@ -17,7 +17,7 @@ module DqdaiAnniv
     end
 
     def to_h
-      return {message:, tags:}
+      return {date:, message:, tags:}
     end
   end
 end
