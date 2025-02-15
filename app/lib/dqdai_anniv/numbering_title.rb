@@ -13,7 +13,7 @@ module DqdaiAnniv
     alias name title
 
     def message
-      return "「#{name}」の発売日 （#{anniversary}周年）"
+      return "「#{name}」の発売日から#{anniversary}周年"
     end
 
     def date
