@@ -10,6 +10,8 @@ package:
 calendar:
   - name: character
     url: https://mstdn.delmulin.com/api/character/v1/detail.json
+  - name: numbering_title
+    url: https://mstdn.delmulin.com/api/numbering_title/v1/common.json
 http:
   retry:
     limit: 3
