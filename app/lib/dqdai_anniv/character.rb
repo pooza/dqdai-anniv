@@ -58,7 +58,7 @@ module DqdaiAnniv
 
     def push(date, event)
       key = Date.parse("2000/#{date}").strftime('%m%d')
-      event[:name].gsub!(/[[:blank:]]/, '')
+      event[:name] = event[:name].gsub(/[[:blank:]]/, '')
       event[:message] = create_message(event)
       event[:tags] = create_tags(event)
       @events[key] ||= []
