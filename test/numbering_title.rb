@@ -17,8 +17,8 @@ module DqdaiAnniv
     end
 
     def test_date
-      assert_equal(Date.parse('1990/2/10'), @dq4.date)
-      assert_equal(Date.parse('2012/8/1'), @dq10.date)
+      assert_equal(Date.parse('1990/2/11'), @dq4.date)
+      assert_equal(Date.parse('2012/8/2'), @dq10.date)
     end
   end
 end
