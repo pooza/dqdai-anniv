@@ -1,11 +1,13 @@
 version: 2
 updates:
+# ⚠ open-pull-requests-limit: 0 はバージョン更新の PR を止める設定で、
+# セキュリティ更新の PR は別枠なので届く。tomato-shrieker と同じ方針。
 - package-ecosystem: bundler
   directory: '/'
   schedule:
     interval: daily
     time: '03:00'
     timezone: 'Asia/Tokyo'
-  open-pull-requests-limit: 10
-  target-branch: master
+  open-pull-requests-limit: 0
+  target-branch: main
   versioning-strategy: lockfile-only
