@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: 4b134cebaf80c6ba0267363d5f729b59bdaf6c36
+  revision: e445a60500fc8ebd50a4ef4c7a20f032dd927ef5
   specs:
-    ginseng-core (1.15.28)
+    ginseng-core (1.19.0)
       activesupport (>= 7.0.7.1)
       addressable (>= 2.9.0)
       cgi (>= 0.4.2)
@@ -21,7 +21,7 @@ GIT
       net-smtp
       nokogiri (>= 1.18.9)
       optparse
-      rake (< 13.4)
+      rake (!= 13.4.0)
       sanitize (>= 6.0.2)
       securerandom
       set
@@ -33,9 +33,9 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-fediverse.git
-  revision: 60a38dae2e80096734e408ced2d322b994e4c624
+  revision: 9b2fdd584ef72de24ff860dd10803cee00bddf8b
   specs:
-    ginseng-fediverse (1.8.25)
+    ginseng-fediverse (1.8.28)
 
 GEM
   remote: https://rubygems.org/
@@ -65,7 +65,7 @@ GEM
     csv (3.3.6)
     date (3.5.1)
     drb (2.2.3)
-    erb (6.0.6)
+    erb (6.0.7)
     etc (1.4.6)
     facets (3.2.2)
     fileutils (1.7.3)
@@ -123,7 +123,7 @@ GEM
     public_suffix (7.0.5)
     racc (1.8.1)
     rainbow (3.1.1)
-    rake (13.3.1)
+    rake (13.4.2)
     regexp_parser (2.12.0)
     ricecream (0.2.1)
     rubocop (1.88.2)
@@ -172,7 +172,7 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     yajl-ruby (1.4.3)
-    zeitwerk (2.8.2)
+    zeitwerk (2.8.3)
     zlib (3.2.3)
 
 PLATFORMS
