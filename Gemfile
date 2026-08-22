@@ -4,7 +4,7 @@ gem 'ginseng-core', github: 'pooza/ginseng-core', require: 'ginseng'
 gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse', require: 'ginseng/fediverse'
 
 group :development do
-  gem 'ginseng-style', github: 'pooza/ginseng-style', branch: 'main', require: false
+  gem 'ginseng-style', github: 'pooza/ginseng-style', tag: 'v1.1.0', require: false
   gem 'ricecream'
   gem 'timecop'
   gem 'test-unit'
