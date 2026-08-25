@@ -46,7 +46,7 @@ module DqdaiAnniv
       if event[:type] == '誕生日'
         tags.push('生誕祭')
         tags.push("#{event[:name]}生誕祭")
-        tags.push("#{event[:name]}生誕祭#{Date.today.year}")
+        tags.push("#{event[:name]}生誕祭#{DqdaiAnniv.today.year}")
       end
       return tags
     end
