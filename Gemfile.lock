@@ -37,6 +37,17 @@ GIT
   specs:
     ginseng-fediverse (1.8.28)
 
+GIT
+  remote: https://github.com/pooza/ginseng-style.git
+  revision: 0c9ddb19d902d675504fc2d6ed258e590901073f
+  tag: v1.1.4
+  specs:
+    ginseng-style (1.1.4)
+      rubocop
+      rubocop-minitest
+      rubocop-performance
+      rubocop-rake
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -183,11 +194,8 @@ PLATFORMS
 DEPENDENCIES
   ginseng-core!
   ginseng-fediverse!
+  ginseng-style!
   ricecream
-  rubocop
-  rubocop-minitest
-  rubocop-performance
-  rubocop-rake
   test-unit
   timecop
 
