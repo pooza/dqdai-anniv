@@ -4,8 +4,19 @@ require 'dqdai_anniv/refines'
 module DqdaiAnniv
   using Refines
 
+  # 発売日・誕生日はいずれも日本の日付なので、実行環境の TZ に依存させない
+  TIMEZONE = '+09:00'.freeze
+
   def self.dir
     return File.expand_path('../..', __dir__)
+  end
+
+  def self.now
+    return Time.now.getlocal(TIMEZONE)
+  end
+
+  def self.today
+    return now.to_date
   end
 
   def self.loader

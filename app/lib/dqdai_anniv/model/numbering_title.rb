@@ -5,11 +5,11 @@ module DqdaiAnniv
     end
 
     def date
-      return Time.parse(@params['date']).getlocal.to_date
+      return Time.parse(@params['date']).getlocal(TIMEZONE).to_date
     end
 
     def anniversary
-      return Date.parse("#{Date.today.year}/#{date.strftime('%m/%d')}").year - date.year
+      return Date.parse("#{DqdaiAnniv.today.year}/#{date.strftime('%m/%d')}").year - date.year
     end
 
     def tags
