@@ -4,6 +4,9 @@ module DqdaiAnniv
 
     def initialize
       @http = HTTP.new
+      # ⚠ **取得側だけ 404 の再送を開ける (#38)。**GAS が間欠的に 404 を返す。
+      # HTTP の既定は変えない (HTTP#retry_not_found のコメント参照)。
+      @http.retry_not_found = true
       @params = config['/calendar'].find {|c| c['name'] == name}
       @result = nil
     end
