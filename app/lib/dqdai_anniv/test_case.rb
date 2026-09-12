@@ -1,13 +1,16 @@
 require 'timecop'
+require 'webmock'
 
 module DqdaiAnniv
   class TestCase < Ginseng::TestCase
     include Package
+    include WebMock::API
 
     def teardown
       config.reload
       @handler&.clear
       Timecop.return
+      WebMock.reset!
     end
 
     def self.load(cases = nil)

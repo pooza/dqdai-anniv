@@ -8,4 +8,5 @@ group :development do
   gem 'ricecream'
   gem 'test-unit'
   gem 'timecop'
+  gem 'webmock'
 end
