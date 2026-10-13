@@ -54,6 +54,14 @@ module DqdaiAnniv
       assert_empty(@noevent.events)
     end
 
+    # #47: 年を渡すと、年で変わるタグはその年で作る（今日の年ではなく）。
+    def test_events_with_year
+      tags = @dai.events(2027)['0927'].first[:tags]
+
+      assert_includes(tags, '種﨑敦美生誕祭2027')
+      assert_not_includes(tags, '種﨑敦美生誕祭2022')
+    end
+
     def test_events?
       assert_predicate(@crystal, :events?)
       assert_predicate(@dai, :events?)

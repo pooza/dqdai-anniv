@@ -1,23 +1,23 @@
 module DqdaiAnniv
   class NumberingTitle < Model
-    def message
-      return "「#{title}」の発売日から#{anniversary}周年"
+    def message(year = DqdaiAnniv.today.year)
+      return "「#{title}」の発売日から#{anniversary(year)}周年"
     end
 
     def date
       return Time.parse(@params['date']).getlocal(TIMEZONE).to_date
     end
 
-    def anniversary
-      return Date.parse("#{DqdaiAnniv.today.year}/#{date.strftime('%m/%d')}").year - date.year
+    def anniversary(year = DqdaiAnniv.today.year)
+      return year - date.year
     end
 
     def tags
       return Ginseng::Fediverse::TagContainer.new(@params['tags'])
     end
 
-    def to_h
-      return {date:, message:, tags:}
+    def to_h(year = DqdaiAnniv.today.year)
+      return {date:, message: message(year), tags:}
     end
   end
 end
