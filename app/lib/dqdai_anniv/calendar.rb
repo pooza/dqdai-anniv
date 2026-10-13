@@ -25,12 +25,31 @@ module DqdaiAnniv
       return @response
     end
 
-    def events
+    def events(_year = DqdaiAnniv.today.year)
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
 
     def messages
       return events.to_h {|k, events| [k, events.map {|v| create_message(k, v)}]}
+    end
+
+    # 記念日を iCalendar で返す (#47)。事前告知（N 日前から当日まで）の日数を数えるのは
+    # tomato-shrieker の `IcalendarSource` に任せる。
+    #
+    # ⚠ **`RRULE` を使わず、年ごとに具体的な日付で出す。**「34周年」や
+    # `#種﨑敦美生誕祭2026` は年で変わるので、繰り返しにすると文面を作れない。
+    # ⚠ **今年と来年のぶんを出す。**tomato-shrieker は開始日の N 日前から拾うので、
+    # 年末には 1 月の予定が見えている必要がある。
+    def ical(years = [DqdaiAnniv.today.year, DqdaiAnniv.today.year + 1])
+      ical = Icalendar::Calendar.new
+      ical.prodid = "-//#{Package.name}//#{name}//JA"
+      years.each do |year|
+        events(year).sort.each do |key, entries|
+          next unless date = create_date(year, key)
+          entries.each_with_index {|entry, i| ical.add_event(create_ical_event(date, entry, i))}
+        end
+      end
+      return ical
     end
 
     def self.all
@@ -45,6 +64,26 @@ module DqdaiAnniv
     end
 
     private
+
+    # ⚠ 2/29 の記念日は、閏年でない年には出さない（`Date.new` が例外になる）。
+    def create_date(year, key)
+      month = key[0, 2].to_i
+      day = key[2, 2].to_i
+      return nil unless Date.valid_date?(year, month, day)
+      return Date.new(year, month, day)
+    end
+
+    # ⚠ **終了日（`DTEND`）を書かない。**終日の予定の `DTEND` は「翌日」と書くのが規格だが、
+    # tomato-shrieker はそれを Google カレンダーのときしか 1 日戻さない。書かなければ
+    # 開始日と同じ日として扱われる。
+    def create_ical_event(date, entry, index)
+      event = Icalendar::Event.new
+      event.uid = "#{name}-#{date.strftime('%Y%m%d')}-#{index}@#{Package.name}"
+      event.dtstart = Icalendar::Values::Date.new(date)
+      event.summary = entry[:message]
+      event.description = entry[:tags].map(&:to_hashtag).join(' ') if entry[:tags].present?
+      return event
+    end
 
     def create_message(key, event)
       date = Date.parse("#{DqdaiAnniv.today.year}#{key}")
