@@ -48,6 +48,7 @@ source:
     dir: /usr/home/pooza/repos/dqdai-anniv
   days: 3   # 何日前から告知するか
 dest:
+  sanitize: html   # 既定のままだと、本文のハッシュタグが `# dq5` のように崩れます
   hooks:
     - https://mstdn.example.com/mulukhiya/webhook/xxxxx
 ```
