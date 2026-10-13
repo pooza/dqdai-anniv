@@ -20,8 +20,18 @@ module DqdaiAnniv
       return @uri
     end
 
+    # 🔴 **空の一覧・一覧でない応答は例外にする (#49)。**
+    #
+    # ⚠⚠ 取得先（GAS）がシートを読めずに空の配列を返すと、以前は「記念日が 1 件も無い」として
+    # 正常終了していた。`--ics` なら予定 0 件のカレンダー、文章モードなら何も出さない。
+    # tomato-shrieker はどちらも「該当なし」の success として扱うので、**告知が 1 件も出ない
+    # まま緑になる**。元のデータが空になることは無いので、空は壊れていると読む。
+    # ⚠ 見るのは応答（元のデータ）で、その日・その年に該当があるかではない。
     def response
       @response ||= @http.get(uri).parsed_response
+      unless @response.is_a?(Array) && @response.present?
+        raise "#{name}: empty or unexpected response from #{uri}"
+      end
       return @response
     end
 

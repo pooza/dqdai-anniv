@@ -54,6 +54,36 @@ module DqdaiAnniv
       assert_equal(['2028-02-29'], calendar.ical([2028]).events.map {|v| v.dtstart.to_s})
     end
 
+    # 🔴 **#49: 取得先が空の一覧を返したら、予定 0 件で正常終了せずに例外にする。**
+    #
+    # ⚠⚠ tomato-shrieker は予定 0 件のカレンダーを「該当なし」の success として扱うので、
+    # 通してしまうと告知が 1 件も出ないまま緑になる。⚠ 一覧でない応答（エラーの Hash・HTML）も
+    # 同じ扱い（以前は `NoMethodError` で落ちていた）。
+    def test_empty_response_is_error
+      responses = [[], {}, {'error' => 'x'}, '<html>error</html>', nil]
+      responses.product(['character', 'numbering_title']).each do |response, name|
+        calendar = Calendar.create(name)
+        calendar.instance_variable_set(:@response, response)
+        # ⚠ nil だと `||=` が実際に取りに行くので、取得を差し替えておく。
+        calendar.instance_variable_set(:@http, FakeHTTP.new(response))
+        error = assert_raise(RuntimeError, response.inspect) {calendar.ical}
+
+        assert_include(error.message, "#{name}: empty or unexpected response")
+        assert_raise(RuntimeError) {calendar.messages}
+      end
+    end
+
+    # 応答を差し替えるための HTTP。
+    class FakeHTTP
+      def initialize(response)
+        @response = response
+      end
+
+      def get(_uri)
+        return Struct.new(:parsed_response).new(@response)
+      end
+    end
+
     # 該当が無くても、空の VCALENDAR を返す。
     def test_empty
       calendar = Calendar.create('character')
