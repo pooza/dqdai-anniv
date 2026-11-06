@@ -5,7 +5,7 @@ gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse', require: 'ginseng/fe
 gem 'icalendar'
 
 group :development do
-  gem 'ginseng-style', github: 'pooza/ginseng-style', tag: 'v1.1.14', require: false
+  gem 'ginseng-style', github: 'pooza/ginseng-style', tag: 'v1.1.15', require: false
   gem 'ricecream'
   gem 'test-unit'
   gem 'timecop'
